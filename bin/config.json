@@ -1,8 +1,8 @@
 {
   "prefix": "rfp-manserv",
   "privateWebsite": false,
-  "certificate": "",
-  "domain": "",
+  "certificate": "fed27a7a-4675-4cd9-94a6-a7d3528aab00",
+  "domain": "dev.4strategies.com",
   "cfGeoRestrictEnable": false,
   "cfGeoRestrictList": [],
   "bedrock": {
