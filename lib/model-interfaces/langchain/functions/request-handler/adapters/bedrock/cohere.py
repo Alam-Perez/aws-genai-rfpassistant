@@ -34,14 +34,14 @@ class BedrockCohereCommandAdapter(ModelAdapter):
     def get_prompt(self):
         template = """
 
-Human: The following is a friendly conversation between a human and an AI. If the AI does not know the answer to a question, it truthfully says it does not know.
+Humano: A seguir, uma conversa amigável entre um humano e uma IA. Se a IA não sabe a resposta para uma pergunta, ela diz sinceramente que não sabe.
 
-Current conversation:
+Conversa atual:
 {chat_history}
 
-Question: {input}
+Pergunta: {input}
 
-Assistant:"""
+Assistente:"""
 
         input_variables = ["input", "chat_history"]
         prompt_template_args = {

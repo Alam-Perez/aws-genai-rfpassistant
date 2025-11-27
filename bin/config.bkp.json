@@ -1,5 +1,9 @@
 {
   "prefix": "rfp-manserv",
+  "vpc": {
+    "vpcId": "",
+    "createVpcEndpoints": true
+  },
   "privateWebsite": false,
   "certificate": "",
   "domain": "",

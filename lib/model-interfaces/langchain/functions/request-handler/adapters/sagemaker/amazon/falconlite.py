@@ -59,7 +59,7 @@ class SMFalconLiteAdapter(ModelAdapter):
         )
 
     def get_prompt(self):
-        template = """<|prompter|>Our current conversation: {chat_history}
+        template = """<|prompter|>Nossa conversa atual: {chat_history}
 
         {input}<|endoftext|><|assistant|>"""
 

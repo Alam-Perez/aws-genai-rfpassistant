@@ -6,21 +6,21 @@ from langchain.prompts import PromptTemplate
 
 
 Llama2ChatPrompt = """<s>[INST] <<SYS>>
-You are an helpful assistant that provides concise answers to user questions with as little sentences as possible and at maximum 3 sentences. You do not repeat yourself. You avoid bulleted list or emojis.
+Você é um assistente prestativo que fornece respostas concisas às perguntas dos usuários com o mínimo de frases possível, no máximo 3. Você não se repete. Evita listas com marcadores ou emojis.
 <</SYS>>
 
-{chat_history}<s>[INST] Context: {input} [/INST]"""
+{chat_history}<s>[INST] Contexto: {input} [/INST]"""
 
 Llama2ChatQAPrompt = """<s>[INST] <<SYS>>
-Use the following conversation history and pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer. You do not repeat yourself. You avoid bulleted list or emojis.
+Use o histórico da conversa a seguir e trechos de contexto para responder à pergunta no final. Se você não souber a resposta, apenas diga que não sabe, não tente inventar uma resposta. Não se repita. Evite listas com marcadores ou emojis.
 <</SYS>>
 
-{chat_history}<s>[INST] Context: {context}
+{chat_history}<s>[INST] Contexto: {context}
 
 {question} [/INST]"""
 
 Llama2ChatCondensedQAPrompt = """<s>[INST] <<SYS>>
-Given the following conversation and the question at the end, rephrase the follow up input to be a standalone question, in the same language as the follow up input. You do not repeat yourself. You avoid bulleted list or emojis.
+Dada a seguinte conversa e a pergunta no final, reformule a entrada de acompanhamento para ser uma pergunta independente, na mesma língua que a entrada de acompanhamento. Você não se repete. Você evita listas com marcadores ou emojis.
 <</SYS>>
 
 {chat_history}<s>[INST] {question} [/INST]"""

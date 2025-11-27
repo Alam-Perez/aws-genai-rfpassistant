@@ -71,24 +71,24 @@ def list_bedrock_models():
         bedrock_models = [
             m
             for m in response.get("modelSummaries", [])
-            if m.get("modelLifecycle", {}).get("status")
-            == genai_core.types.ModelStatus.ACTIVE.value
+            if m.get("modelLifecycle", {}).get("status") == genai_core.types.ModelStatus.ACTIVE.value 
+            or m.get("modelLifecycle", {}).get("status") == genai_core.types.ModelStatus.LEGACY.value
         ]
 
         models = []
         for model in bedrock_models:
-            if model["modelId"].startswith("anthropic.claude-3"):
-                if "inputModalities" in model and "outputModalities" in model and Modality.EMBEDDING.value not in model.get("outputModalities", []) and Modality.IMAGE.value not in model.get("outputModalities", []):
-                    m = {
-                            "provider": Provider.BEDROCK.value,
-                            "name": model["modelId"],
-                            "streaming": model.get("responseStreamingSupported", False),
-                            "inputModalities": model["inputModalities"],
-                            "outputModalities": model["outputModalities"],
-                            "interface": ModelInterface.LANGCHIAN.value,
-                            "ragSupported": True,
-                        }
-                models.append(m)
+            #if model["modelId"].startswith("anthropic.claude-3"):
+            if "inputModalities" in model and "outputModalities" in model and Modality.EMBEDDING.value not in model.get("outputModalities", []) and Modality.IMAGE.value not in model.get("outputModalities", []):
+                m = {
+                        "provider": Provider.BEDROCK.value,
+                        "name": model["modelId"],
+                        "streaming": model.get("responseStreamingSupported", False),
+                        "inputModalities": model["inputModalities"],
+                        "outputModalities": model["outputModalities"],
+                        "interface": ModelInterface.LANGCHIAN.value,
+                        "ragSupported": True,
+                    }
+            models.append(m)
 
         return models
     except Exception as e:

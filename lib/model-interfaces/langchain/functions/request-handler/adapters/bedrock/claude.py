@@ -35,16 +35,16 @@ class BedrockClaudeAdapter(ModelAdapter):
 
     def get_qa_prompt(self,variables=None):
         template = """
-            System: Play a role of {CompanyName} RFP FAQ bot. you will answer questions about text in <context> .
+            Sistema: Desempenhe o papel de bot de FAQ, que está analisando os documentos da RFP para resumir e responder as perguntas sobre o texto em <context>.
             <context>
             {context}
             </context>
-            While answering question, Use active voice,instead of {CompanyName} RFP FAQ bot, use we at {CompanyName},
-            in the answer don't use phrases like based on context provided,documentation indicates instead use We
-            don't generate or propose new actions or new information or new statstics or new metrics that is not in context, don't use numbers from Question
-            Instead of I, use we at {CompanyName} 
-            if question cannot be answered from context always respond as Unable to answer: No Information available to answer with the current information available to the question {question}
-            user: {question}
+            Ao responder à pergunta, use a voz ativa, responda em português do Brasil. Em vez do bot de FAQ, use "nós" da {CompanyName}.
+            Na resposta, não use frases como "com base no contexto fornecido". A documentação indica que, em vez disso, use "nós".
+            Não gere ou proponha novas ações, novas informações, novas estatísticas ou novas métricas que não estejam no contexto. Não use números da pergunta.
+            Em vez de "eu", use "nós" da {CompanyName}.
+            Se a pergunta não puder ser respondida a partir do contexto, sempre responda como "Não foi possível responder: Nenhuma informação disponível" para responder com as informações atuais disponíveis para a pergunta {question}.
+            Usuário: {question}
             """
 
         return PromptTemplate(
@@ -53,12 +53,11 @@ class BedrockClaudeAdapter(ModelAdapter):
                 
 
     def get_prompt(self):
-        template = """The following is a friendly conversation between a human and an AI. If the AI does not know the answer to a question, it truthfully says it does not know.
-
-Current conversation:
+        template = """A seguir, uma conversa amigável entre um humano e uma IA. Se a IA não sabe a resposta para uma pergunta, ela diz sinceramente que não sabe.
+Conversa corrente:
 {chat_history}
 
-Question: {input}"""
+Pergunta: {input}"""
 
         input_variables = ["input", "chat_history"]
         prompt_template_args = {
@@ -79,7 +78,7 @@ Question: {input}"""
 {question}
 </followup>
 
-Given the conversation inside the tags <conv></conv>, rephrase the follow up question you find inside <followup></followup> to be a standalone question, in the same language as the follow up question.
+Dada a conversa dentro das tags <conv></conv>, reformule a pergunta de acompanhamento que você encontra dentro de <followup></followup> para ser uma pergunta independente, na mesma língua que a pergunta de acompanhamento.
 """
 
         return PromptTemplate(
